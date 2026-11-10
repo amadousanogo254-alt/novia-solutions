@@ -76,7 +76,7 @@
                 <li>Apprentissage progressif</li>
                 <li>Paiement via PayPal ou cash</li>
               </ul>
-              <button type="button" class="btn btn-primary payment-trigger" data-payment-service="Auto-école italienne" data-payment-amount="60">Payer maintenant</button>
+              <a class="btn btn-primary" href="contact.html?service=Formation%20en%20langue%20italienne&amp;subject=Auto-%C3%A9cole%20italienne">Nous contacter</a>
             </div>
             <div class="price-card">
               <h3>Premium</h3>
@@ -96,67 +96,6 @@
           <p class="flexible-pricing-note" data-currency-convert>La formule Essentielle est proposée au prix fixe de 35 €. Pour les formules Professionnelle et Premium, indiquez votre budget à partir respectivement de 50 € et 100 €. Ces montants sont indicatifs : nous confirmerons avec vous les prestations adaptées avant toute commande. Aucun paiement n’est effectué depuis cette sélection.</p>
         </div>
       </section>
-
-      <div id="paymentModal" class="payment-modal" aria-hidden="true" role="dialog" aria-modal="true">
-        <div class="payment-modal-backdrop" data-close-payment="true"></div>
-        <div class="payment-modal-content">
-          <button type="button" class="close-modal" aria-label="Fermer la fenêtre de paiement">×</button>
-
-          <div class="payment-modal-header">
-            <span class="eyebrow">Paiement sécurisé</span>
-            <h3>Paiement digital NOVIA SOLUTIONS</h3>
-          </div>
-
-          <div id="paymentFormStep" class="payment-step">
-            <form id="paymentForm" class="payment-form" novalidate>
-              <div class="field-group">
-                <label for="paymentService">Service</label>
-                <input id="paymentService" name="service" type="text" readonly />
-              </div>
-
-              <div class="field-group">
-                <label for="paymentAmount">Montant (max 5 000 000 FCFA / ~8 000 €)</label>
-                <input id="paymentAmount" name="amount" type="number" min="1" max="5000000" step="1" required />
-              </div>
-
-              <div class="field-group">
-                <label for="paymentPhone">Numéro de téléphone</label>
-                <input id="paymentPhone" name="phone" type="tel" placeholder="+33 6 12 34 56 78" required />
-              </div>
-
-              <div id="paymentError" class="form-message form-message-error" aria-live="polite"></div>
-
-              <button type="submit" class="btn btn-primary btn-block">Envoyer le code SMS</button>
-            </form>
-          </div>
-
-          <div id="smsStep" class="payment-step hidden">
-            <div class="sms-box">
-              <span class="status-pill">SMS envoyé</span>
-              <p id="smsMessage">Un code de sécurité a été envoyé à votre numéro.</p>
-              <div id="smsCodeDisplay" class="code-display">000000</div>
-            </div>
-
-            <form id="smsForm" class="payment-form" novalidate>
-              <div class="field-group">
-                <label for="smsCodeInput">Code de sécurité</label>
-                <input id="smsCodeInput" name="smsCode" type="text" inputmode="numeric" maxlength="6" placeholder="Entrez le code 6 chiffres" required />
-              </div>
-
-              <div id="smsError" class="form-message form-message-error" aria-live="polite"></div>
-
-              <button type="submit" class="btn btn-primary btn-block">Valider le paiement</button>
-            </form>
-          </div>
-
-          <div id="paymentSuccess" class="payment-success hidden">
-            <div class="success-icon">✓</div>
-            <h4>Paiement validé</h4>
-            <p>Le règlement pour <strong id="successService">votre service</strong> a bien été confirmé.</p>
-            <p>Montant : <strong id="successAmount">0 FCFA</strong></p>
-          </div>
-        </div>
-      </div>
 
       <section class="section muted">
         <div class="container">
