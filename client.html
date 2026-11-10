@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Espace client | NOVIA SOLUTIONS</title>
+    <meta name="description" content="Espace client NOVIA SOLUTIONS : suivi des rendez-vous, devis, commandes et documents." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="brand" aria-label="NOVIA SOLUTIONS">
+          <span class="brand-text">NOVIA SOLUTIONS</span>
+        </a>
+        <button class="nav-toggle" aria-label="Ouvrir le menu">☰</button>
+        <nav class="main-nav">
+          <a href="index.html">Accueil</a>
+          <a href="about.html">À propos</a>
+          <a href="services.html">Nos services</a>
+          <a href="formations.html">Formations</a>
+          <a href="products.html">Offres</a>
+          <a href="appointment.html#availabilityCalendar">Rendez-vous</a>
+          <a href="contact.html">Contact</a>
+          <a href="client.html">Espace client</a>
+        </nav>
+        <a class="btn btn-primary nav-cta" href="appointment.html#availabilityCalendar">Prendre rendez-vous</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero small-hero">
+        <div class="container thin-container">
+          <span class="eyebrow">Espace client</span>
+          <h1>Suivez vos rendez-vous, devis et projets en toute simplicité.</h1>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container client-grid">
+          <aside class="client-sidebar card-box">
+            <h3>Mon espace</h3>
+            <ul>
+              <li>Tableau de bord</li>
+              <li>Mes rendez-vous</li>
+              <li>Mes devis</li>
+              <li>Mes commandes</li>
+              <li>Mes documents</li>
+              <li>Support</li>
+            </ul>
+          </aside>
+
+          <div class="client-main">
+            <div class="cards-grid service-grid">
+              <article class="service-card mini-card">
+                <h3>Rendez-vous</h3>
+                <p>3 prochains créneaux</p>
+              </article>
+              <article class="service-card mini-card">
+                <h3>Devis</h3>
+                <p>2 devis en attente</p>
+              </article>
+              <article class="service-card mini-card">
+                <h3>Commandes</h3>
+                <p>1 commande validée</p>
+              </article>
+            </div>
+
+            <div class="activity-box card-box">
+              <h3>Activité récente</h3>
+              <ul>
+                <li>Devis envoyé le 10/10/2026</li>
+                <li>Rendez-vous confirmé pour le 15/10/2026</li>
+                <li>Commande validée : Offre Professionnelle</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a href="index.html" class="brand" aria-label="NOVIA SOLUTIONS">
+            <span class="brand-text">NOVIA SOLUTIONS</span>
+          </a>
+          <p>Des solutions modernes, claires et efficaces pour accompagner votre croissance.</p>
+        </div>
+        <div>
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="products.html">Offres</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <p>© <span id="year"></span> NOVIA SOLUTIONS. Tous droits réservés.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

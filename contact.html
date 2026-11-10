@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | NOVIA SOLUTIONS</title>
+    <meta name="description" content="Contactez NOVIA SOLUTIONS pour demander un devis, parler à un conseiller ou discuter de votre projet." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="contact-page">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="brand" aria-label="NOVIA SOLUTIONS">
+          <span class="brand-text">NOVIA SOLUTIONS</span>
+        </a>
+        <button class="nav-toggle" aria-label="Ouvrir le menu">☰</button>
+        <nav class="main-nav">
+          <a href="index.html">Accueil</a>
+          <a href="about.html">À propos</a>
+          <a href="services.html">Nos services</a>
+          <a href="formations.html">Formations</a>
+          <a href="products.html">Offres</a>
+          <a href="appointment.html#availabilityCalendar">Rendez-vous</a>
+          <a href="contact.html">Contact</a>
+          <a href="client.html">Espace client</a>
+        </nav>
+        <a class="btn btn-primary nav-cta" href="appointment.html#availabilityCalendar">Prendre rendez-vous</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero small-hero">
+        <div class="container thin-container">
+          <h1>Parlons de votre projet et trouvez la bonne solution.</h1>
+        </div>
+      </section>
+
+      <section class="section contact-section">
+        <div class="container contact-grid">
+          <div class="contact-info card-box">
+            <h3>Nous contacter</h3>
+            <ul>
+              <li>Email : <a href="mailto:noviasolutions0@gmail.com">noviasolutions0@gmail.com</a></li>
+              <li>Téléphone : <a href="tel:+393512368628">+39 351 236 8628</a></li>
+              <li>Téléphone : <a href="tel:+22379704790">+223 79 70 47 90</a></li>
+              <li>Horaires : Lun–Ven, 9h–18h</li>
+            </ul>
+            <div class="map-placeholder">
+              Carte à intégrer ici
+            </div>
+          </div>
+
+          <form class="styled-form form-card" data-form="contact" action="/api/contact-requests" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+              <label>
+                Nom complet
+                <input type="text" name="name" placeholder="Votre nom" required />
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" placeholder="Votre email" required />
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label>
+                Vous êtes :
+                <select name="profile" id="contactProfile">
+                  <option value="Particulier">Un particulier</option>
+                  <option value="Entreprise / Professionnel">Une entreprise / Professionnel</option>
+                </select>
+              </label>
+              <label>
+                <span id="companyLabel">Profession / Activité (Optionnel)</span>
+                <input type="text" name="company" id="companyInput" placeholder="Ex : Étudiant, salarié, indépendant..." />
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label>
+                Téléphone
+                <input type="tel" name="phone" placeholder="Votre téléphone" required />
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label>
+                Service concerné
+                <select name="service" required>
+                  <option value="">Choisir</option>
+                  <option value="Accompagnement business">Accompagnement business</option>
+                  <option value="Stratégie digitale">Stratégie digitale</option>
+                  <option value="Développement web">Développement web</option>
+                  <option value="Partenariat &amp; accompagnement">Partenariat &amp; accompagnement</option>
+                  <option value="Achat et transport de véhicules">Achat et transport de véhicules</option>
+                  <option value="Billetterie et voyage">Billetterie et voyage</option>
+                  <option value="Formation en langue italienne">Formation en langue italienne</option>
+                  <option value="Rendez-vous consulaire et regroupement familial">Rendez-vous consulaire et regroupement familial</option>
+                  <option value="Orientation des étudiants">Orientation des étudiants</option>
+                  <option value="Comparabilité des diplômes">Comparabilité des diplômes</option>
+                  <option value="Accompagnement à l’intégration">Accompagnement à l’intégration</option>
+                  <option value="Assistance et orientation administrative">Assistance et orientation administrative</option>
+                  <option>Support &amp; suivi</option>
+                </select>
+              </label>
+              <label>
+                Budget estimé
+                <input type="text" name="budget" placeholder="Ex : 500 € - 2000 €" />
+              </label>
+            </div>
+
+            <label>
+              Objet de la demande
+              <input type="text" name="subject" placeholder="Objet" required />
+            </label>
+
+            <label>
+              Message
+              <textarea name="message" rows="5" placeholder="Décrivez votre besoin" required></textarea>
+            </label>
+
+            <div class="file-upload-field">
+              <label for="contactFiles">Joindre des documents (facultatif)</label>
+              <input id="contactFiles" type="file" name="files" multiple accept=".pdf,.jpg,.jpeg,.png,.docx" aria-describedby="attachmentHelp selectedFiles contactFileError" />
+              <p class="attachment-help" id="attachmentHelp">PDF, JPG/PNG ou DOCX · 5 fichiers max. · 12 Mo au total.</p>
+              <ul class="attachment-list" id="selectedFiles" aria-live="polite">
+                <li>Aucun fichier sélectionné.</li>
+              </ul>
+              <p class="form-message form-message-error" id="contactFileError" aria-live="polite"></p>
+            </div>
+
+            <p class="contact-delivery-note">Adresse de réception prévue : noviasolutions0@gmail.com. Le formulaire confirme l’envoi uniquement après transmission réussie. Évitez de joindre des documents sensibles qui ne sont pas nécessaires à votre demande.</p>
+
+            <label class="checkbox-row">
+              <input type="checkbox" name="consent" value="yes" required />
+              <span>J’accepte d’être recontacté au sujet de cette demande.</span>
+            </label>
+
+            <button type="submit" class="btn btn-primary">Envoyer ma demande</button>
+            <p class="form-success" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a href="index.html" class="brand" aria-label="NOVIA SOLUTIONS">
+            <span class="brand-text">NOVIA SOLUTIONS</span>
+          </a>
+          <p>Des solutions modernes, claires et efficaces pour accompagner votre croissance.</p>
+        </div>
+        <div>
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="products.html">Offres</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Coordonnées</h4>
+          <ul>
+            <li>Email : <a href="mailto:noviasolutions0@gmail.com">noviasolutions0@gmail.com</a></li>
+            <li>Tél. : <a href="tel:+393512368628">+39 351 236 8628</a></li>
+            <li>Tél. : <a href="tel:+22379704790">+223 79 70 47 90</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <p>© <span id="year"></span> NOVIA SOLUTIONS. Tous droits réservés.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

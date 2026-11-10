@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prendre rendez-vous | NOVIA SOLUTIONS</title>
+    <meta name="description" content="Réservez un rendez-vous avec NOVIA SOLUTIONS pour discuter de votre projet, votre besoin ou votre demande de devis." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=responsive-20261102-v4" />
+  </head>
+  <body class="appointment-page">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="brand" aria-label="NOVIA SOLUTIONS">
+          <span class="brand-text">NOVIA SOLUTIONS</span>
+        </a>
+        <button class="nav-toggle" aria-label="Ouvrir le menu">☰</button>
+        <nav class="main-nav">
+          <a href="index.html">Accueil</a>
+          <a href="about.html">À propos</a>
+          <a href="services.html">Nos services</a>
+          <a href="formations.html">Formations</a>
+          <a href="products.html">Offres</a>
+          <a href="appointment.html#availabilityCalendar">Rendez-vous</a>
+          <a href="contact.html">Contact</a>
+          <a href="client.html">Espace client</a>
+        </nav>
+        <a class="btn btn-primary nav-cta" href="appointment.html#availabilityCalendar">Prendre rendez-vous</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero small-hero">
+        <div class="container thin-container">
+          <span class="eyebrow">Rendez-vous</span>
+          <h1>Réservez un créneau avec notre équipe.</h1>
+        </div>
+      </section>
+
+      <section class="section appointment-section" id="availabilityCalendar">
+        <div class="container booking-layout">
+          <div class="booking-calendar-panel">
+            <div class="booking-heading">
+              <span class="eyebrow">Disponibilités</span>
+              <h2>Choisissez une date</h2>
+              <p>Sélectionnez un jour ouvré pour afficher les créneaux proposés.</p>
+            </div>
+
+            <div class="calendar-controls">
+              <button type="button" id="calendarPrevious" class="calendar-nav" aria-label="Mois précédent">‹</button>
+              <h3 id="calendarMonthLabel" aria-live="polite"></h3>
+              <button type="button" id="calendarNext" class="calendar-nav" aria-label="Mois suivant">›</button>
+            </div>
+
+            <div class="calendar-weekdays" aria-hidden="true">
+              <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
+            </div>
+            <div id="calendarDays" class="calendar-days" role="group" aria-label="Jours disponibles"></div>
+            <p id="calendarStatus" class="calendar-note" role="status" aria-live="polite">Chargement des disponibilités Google Calendar…</p>
+          </div>
+
+          <form class="styled-form form-card booking-form" data-form="appointment" id="appointmentForm">
+            <div class="booking-heading">
+              <span class="eyebrow">Votre demande</span>
+              <h2>Réservez votre rendez-vous</h2>
+            </div>
+
+            <div class="form-row">
+              <label>
+                Service
+                <select name="service" required>
+                  <option value="">Choisir un service</option>
+                  <option value="Stratégie digitale">Stratégie digitale</option>
+                  <option value="Développement web">Développement web</option>
+                  <option value="Accompagnement business">Accompagnement business</option>
+                  <option value="Support &amp; suivi">Support &amp; suivi</option>
+                </select>
+              </label>
+              <label>
+                Type de rendez-vous
+                <select name="type" required>
+                  <option value="">Choisir</option>
+                  <option value="En ligne">En ligne</option>
+                  <option value="Téléphone">Téléphone</option>
+                  <option value="Présentiel">Présentiel</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="booking-selection" aria-live="polite">
+              <strong id="selectedDateLabel">Aucune date sélectionnée</strong>
+              <input type="hidden" name="date" id="appointmentDate" />
+              <div id="availableTimeSlots" class="time-slot-list">
+                <p>Sélectionnez une date dans le calendrier.</p>
+              </div>
+              <input type="hidden" name="slot" id="appointmentSlot" />
+            </div>
+
+            <div class="form-row">
+              <label>
+                Nom complet
+                <input type="text" name="name" placeholder="Votre nom" required />
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" placeholder="Votre email" required />
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label>
+                Téléphone
+                <input type="tel" name="phone" placeholder="Votre téléphone" required />
+              </label>
+              <label>
+                Objet du rendez-vous
+                <input type="text" name="subject" placeholder="Ex : besoin de stratégie" required />
+              </label>
+            </div>
+
+            <label>
+              Commentaire
+              <textarea name="message" rows="4" placeholder="Décrivez votre besoin"></textarea>
+            </label>
+
+            <label class="checkbox-row">
+              <input type="checkbox" name="consent" value="yes" required />
+              <span>J’accepte d’être recontacté pour confirmer ce rendez-vous.</span>
+            </label>
+
+            <button type="submit" class="btn btn-primary">Demander ce rendez-vous</button>
+            <p class="form-success" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a href="index.html" class="brand" aria-label="NOVIA SOLUTIONS">
+            <span class="brand-text">NOVIA SOLUTIONS</span>
+          </a>
+          <p>Des solutions modernes, claires et efficaces pour accompagner votre croissance.</p>
+        </div>
+        <div>
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="products.html">Offres</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Coordonnées</h4>
+          <ul>
+            <li>Email : <a href="mailto:noviasolutions0@gmail.com">noviasolutions0@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <p>© <span id="year"></span> NOVIA SOLUTIONS. Tous droits réservés.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
