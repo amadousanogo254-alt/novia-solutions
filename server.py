@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hmac
+import base64
 import io
 import json
 import os
@@ -17,6 +18,8 @@ from email.message import EmailMessage
 from pathlib import Path
 from threading import Lock
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+from urllib.error import HTTPError, URLError
+from urllib.request import Request as URLRequest, urlopen
 
 from flask import Flask, abort, jsonify, redirect, request, send_from_directory
 from werkzeug.exceptions import RequestEntityTooLarge
@@ -47,6 +50,9 @@ SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.environ.get("SMTP_PORT", "587"))
 SMTP_USERNAME = os.environ.get("SMTP_USERNAME", CONTACT_RECEIVER)
 SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD", "")
+CONTACT_EMAIL_PROVIDER = os.environ.get("CONTACT_EMAIL_PROVIDER", "smtp").strip().lower()
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
+RESEND_FROM = os.environ.get("RESEND_FROM", "onboarding@resend.dev")
 MAX_CONTACT_REQUEST_BYTES = 16 * 1024 * 1024
 MAX_CONTACT_FILES = 5
 MAX_CONTACT_FILES_BYTES = 12 * 1024 * 1024
@@ -378,7 +384,13 @@ def create_contact_request():
     if not CONTACT_RECEIVER or not EMAIL_PATTERN.fullmatch(CONTACT_RECEIVER):
         app.logger.error("Contact request receiver address is missing or invalid.")
         return error_response("L'adresse de réception des demandes n'est pas correctement configurée.", 503)
-    if not SMTP_HOST or not SMTP_USERNAME or not SMTP_PASSWORD:
+    if CONTACT_EMAIL_PROVIDER not in {"smtp", "resend"}:
+        app.logger.error("Unknown contact email provider.")
+        return error_response("L'envoi des demandes n'est pas correctement configuré.", 503)
+    if CONTACT_EMAIL_PROVIDER == "resend" and (not RESEND_API_KEY or not RESEND_FROM):
+        app.logger.error("Resend settings required for contact request delivery are incomplete.")
+        return error_response("L'envoi des demandes n'est pas encore configuré. Veuillez réessayer ultérieurement.", 503)
+    if CONTACT_EMAIL_PROVIDER == "smtp" and (not SMTP_HOST or not SMTP_USERNAME or not SMTP_PASSWORD):
         app.logger.error("SMTP settings required for contact request delivery are incomplete.")
         return error_response(
             "L'envoi des demandes n'est pas encore configuré. Veuillez réessayer ultérieurement.",
@@ -388,7 +400,7 @@ def create_contact_request():
     email_message = EmailMessage()
     safe_subject = re.sub(r"[\r\n]+", " ", fields["subject"]).strip()
     email_message["Subject"] = f"Demande NOVIA SOLUTIONS : {safe_subject}"
-    email_message["From"] = SMTP_USERNAME
+    email_message["From"] = RESEND_FROM if CONTACT_EMAIL_PROVIDER == "resend" else SMTP_USERNAME
     email_message["To"] = CONTACT_RECEIVER
     email_message["Reply-To"] = fields["email"]
     email_message.set_content(
@@ -410,27 +422,50 @@ def create_contact_request():
             )
         )
     )
-    for filename, (maintype, subtype), content in attachments:
-        email_message.add_attachment(
-            content,
-            maintype=maintype,
-            subtype=subtype,
-            filename=filename,
-        )
-
     try:
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=20) as mail_server:
-            mail_server.starttls(context=ssl.create_default_context())
-            mail_server.login(SMTP_USERNAME, SMTP_PASSWORD)
-            mail_server.send_message(email_message)
-    except (OSError, smtplib.SMTPException) as error:
-        app.logger.warning("Contact request email delivery failed: %s", error)
+        if CONTACT_EMAIL_PROVIDER == "resend":
+            payload = {
+                "from": RESEND_FROM,
+                "to": [CONTACT_RECEIVER],
+                "reply_to": fields["email"],
+                "subject": str(email_message["Subject"]),
+                "text": email_message.get_content(),
+                "attachments": [
+                    {"filename": filename, "content": base64.b64encode(content).decode("ascii")}
+                    for filename, _, content in attachments
+                ],
+            }
+            api_request = URLRequest(
+                "https://api.resend.com/emails",
+                data=json.dumps(payload).encode("utf-8"),
+                headers={"Authorization": f"Bearer {RESEND_API_KEY}", "Content-Type": "application/json"},
+                method="POST",
+            )
+            with urlopen(api_request, timeout=20) as response:
+                result = json.load(response)
+            if not isinstance(result, dict) or not isinstance(result.get("id"), str) or not result["id"]:
+                raise ValueError("Resend response does not contain an email identifier.")
+        else:
+            for filename, (maintype, subtype), content in attachments:
+                email_message.add_attachment(content, maintype=maintype, subtype=subtype, filename=filename)
+            with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=20) as mail_server:
+                mail_server.starttls(context=ssl.create_default_context())
+                mail_server.login(SMTP_USERNAME, SMTP_PASSWORD)
+                mail_server.send_message(email_message)
+    except HTTPError as error:
+        app.logger.warning("Resend rejected a contact request (HTTP %s).", error.code)
+        return error_response(
+            "L'envoi de votre demande a échoué. Vos informations sont conservées dans le formulaire ; réessayez ou contactez-nous par e-mail.",
+            502,
+        )
+    except (OSError, smtplib.SMTPException, URLError, ValueError) as error:
+        app.logger.warning("Contact request email delivery failed: %s", type(error).__name__)
         return error_response(
             "L'envoi de votre demande a échoué. Vos informations sont conservées dans le formulaire ; réessayez ou contactez-nous par e-mail.",
             502,
         )
 
-    return jsonify({"sent": True, "message": "Votre demande et ses pièces jointes ont bien été envoyées."}), 201
+    return jsonify({"sent": True, "message": "Votre demande a été acceptée pour envoi. Si vous ne recevez pas de réponse, contactez-nous directement."}), 201
 
 
 @app.post("/api/appointments")

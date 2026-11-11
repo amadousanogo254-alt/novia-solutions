@@ -657,6 +657,7 @@
     '2ememain · autos': ['2ememain · auto', '2ememain · cars', '2ememain · coches'],
     'Dubaï : EditQ,': ['Dubai: EditQ,', 'Dubai: EditQ,', 'Dubái: EditQ,'],
     'Votre demande et ses pièces jointes ont bien été envoyées.': ['La tua richiesta e i relativi allegati sono stati inviati correttamente.', 'Your request and attachments have been sent successfully.', 'Tu solicitud y sus archivos adjuntos se han enviado correctamente.'],
+    'Votre demande a été acceptée pour envoi. Si vous ne recevez pas de réponse, contactez-nous directement.': ['La tua richiesta è stata accettata per l’invio. Se non ricevi risposta, contattaci direttamente.', 'Your request was accepted for delivery. If you do not receive a response, contact us directly.', 'Tu solicitud se ha aceptado para su envío. Si no recibes respuesta, contáctanos directamente.'],
     'Veuillez renseigner tous les champs obligatoires.': ['Compila tutti i campi obbligatori.', 'Please complete all required fields.', 'Completa todos los campos obligatorios.'],
     'Veuillez accepter d’être recontacté pour envoyer votre demande.': ['Accetta di essere ricontattato per inviare la richiesta.', 'Please agree to be contacted so your request can be sent.', 'Acepta que te contacten para enviar la solicitud.'],
     "Veuillez accepter d'être recontacté pour envoyer votre demande.": ['Accetta di essere ricontattato per inviare la richiesta.', 'Please agree to be contacted so your request can be sent.', 'Acepta que te contacten para enviar la solicitud.'],
