@@ -441,6 +441,7 @@ def create_contact_request():
                 headers={"Authorization": f"Bearer {RESEND_API_KEY}", "Content-Type": "application/json"},
                 method="POST",
             )
+            api_request.add_header("User-Agent", "novia-solutions/1.0")
             with urlopen(api_request, timeout=20) as response:
                 result = json.load(response)
             if not isinstance(result, dict) or not isinstance(result.get("id"), str) or not result["id"]:
