@@ -40,99 +40,18 @@
       </section>
 
       <section class="section appointment-section" id="availabilityCalendar">
-        <div class="container booking-layout">
+        <div class="container thin-container">
           <div class="booking-calendar-panel">
             <div class="booking-heading">
               <span class="eyebrow">Disponibilités</span>
-              <h2>Choisissez une date</h2>
-              <p>Sélectionnez un jour ouvré pour afficher les créneaux proposés.</p>
+              <h2>Réservez sur Google Agenda</h2>
+              <p>Consultez les disponibilités et réservez votre rendez-vous sur notre page Google Agenda.</p>
             </div>
-
-            <div class="calendar-controls">
-              <button type="button" id="calendarPrevious" class="calendar-nav" aria-label="Mois précédent">‹</button>
-              <h3 id="calendarMonthLabel" aria-live="polite"></h3>
-              <button type="button" id="calendarNext" class="calendar-nav" aria-label="Mois suivant">›</button>
-            </div>
-
-            <div class="calendar-weekdays" aria-hidden="true">
-              <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
-            </div>
-            <div id="calendarDays" class="calendar-days" role="group" aria-label="Jours disponibles"></div>
-            <p id="calendarStatus" class="calendar-note" role="status" aria-live="polite">Chargement des disponibilités Google Calendar…</p>
+            <p>
+              <a class="btn btn-primary" href="https://calendar.app.google/WvMMAb4GLwKVwjxv6">Ouvrir la page de réservation Google</a>
+            </p>
+            <p class="calendar-note">Vous serez redirigé vers Google pour choisir un créneau et confirmer votre réservation.</p>
           </div>
-
-          <form class="styled-form form-card booking-form" data-form="appointment" id="appointmentForm">
-            <div class="booking-heading">
-              <span class="eyebrow">Votre demande</span>
-              <h2>Réservez votre rendez-vous</h2>
-            </div>
-
-            <div class="form-row">
-              <label>
-                Service
-                <select name="service" required>
-                  <option value="">Choisir un service</option>
-                  <option value="Stratégie digitale">Stratégie digitale</option>
-                  <option value="Développement web">Développement web</option>
-                  <option value="Accompagnement business">Accompagnement business</option>
-                  <option value="Support &amp; suivi">Support &amp; suivi</option>
-                </select>
-              </label>
-              <label>
-                Type de rendez-vous
-                <select name="type" required>
-                  <option value="">Choisir</option>
-                  <option value="En ligne">En ligne</option>
-                  <option value="Téléphone">Téléphone</option>
-                  <option value="Présentiel">Présentiel</option>
-                </select>
-              </label>
-            </div>
-
-            <div class="booking-selection" aria-live="polite">
-              <strong id="selectedDateLabel">Aucune date sélectionnée</strong>
-              <input type="hidden" name="date" id="appointmentDate" />
-              <div id="availableTimeSlots" class="time-slot-list">
-                <p>Sélectionnez une date dans le calendrier.</p>
-              </div>
-              <input type="hidden" name="slot" id="appointmentSlot" />
-            </div>
-
-            <div class="form-row">
-              <label>
-                Nom complet
-                <input type="text" name="name" placeholder="Votre nom" required />
-              </label>
-              <label>
-                Email
-                <input type="email" name="email" placeholder="Votre email" required />
-              </label>
-            </div>
-
-            <div class="form-row">
-              <label>
-                Téléphone
-                <input type="tel" name="phone" placeholder="Votre téléphone" required />
-              </label>
-              <label>
-                Objet du rendez-vous
-                <input type="text" name="subject" placeholder="Ex : besoin de stratégie" required />
-              </label>
-            </div>
-
-            <label>
-              Commentaire
-              <textarea name="message" rows="4" placeholder="Décrivez votre besoin"></textarea>
-            </label>
-
-            <label class="checkbox-row">
-              <input type="checkbox" name="consent" value="yes" required />
-              <span>J’accepte d’être recontacté pour confirmer ce rendez-vous.</span>
-            </label>
-
-            <button type="submit" class="btn btn-primary">Demander ce rendez-vous</button>
-            <p class="form-success" aria-live="polite"></p>
-          </form>
         </div>
       </section>
     </main>

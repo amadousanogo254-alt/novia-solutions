@@ -20,6 +20,8 @@ Render gratuit bloque les ports SMTP. Le serveur peut utiliser l'API HTTPS de Re
 
 L'adresse `onboarding@resend.dev` est limitée aux tests vers l'adresse du compte Resend. Pour un usage réel, vérifiez un domaine personnel chez Resend et utilisez une adresse expéditrice de ce domaine dans `RESEND_FROM`. L'acceptation par l'API ne garantit pas la réception finale.
 
+Les requêtes Resend envoyées par le serveur incluent l'en-tête `User-Agent: novia-solutions/1.0` exigé par Resend. Si une erreur 403 persiste, consultez les journaux Render et les journaux Resend ; contactez l'assistance Resend sans communiquer la clé API.
+
 ## SMTP local
 
 Le formulaire envoie les demandes et leurs pièces jointes à `noviasolutions0@gmail.com` avec une connexion SMTP chiffrée TLS. Les pièces jointes acceptées sont PDF, JPG, PNG et DOCX, avec une limite de 5 fichiers et 12 Mo au total.

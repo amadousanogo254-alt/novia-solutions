@@ -1,5 +1,13 @@
 # Connexion Google Calendar
 
+## Page de réservation Google
+
+La page de rendez-vous du site redirige vers la page de réservation Google Agenda configurée par NOVIA SOLUTIONS. Les disponibilités et les informations demandées aux clients se règlent directement dans Google Agenda. Cette méthode ne nécessite pas de connexion OAuth ni de stockage de jeton sur Render. Vérifiez la disponibilité de votre page et effectuez une réservation de test avant publication.
+
+## Ancienne intégration dans le site
+
+Les étapes ci-dessous décrivent l'ancienne intégration, conservée dans le serveur mais non utilisée par la page de rendez-vous actuelle.
+
 Le site utilise un backend Python pour conserver les secrets OAuth hors du navigateur. Les jetons et la base locale sont écrits dans `%USERPROFILE%\.novia-solutions`, en dehors du dossier public du site.
 
 ## Google Cloud
