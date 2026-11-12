@@ -4953,6 +4953,13 @@ body.services-page:not(.solutions-page):not(.appointment-page):not(.landing-page
   fill: #fff;
 }
 
+@media (max-width: 768px) {
+  .home-footer,
+  .site-footer {
+    padding-bottom: 72px;
+  }
+}
+
 .trust-section {
   margin-top: 28px;
 }
