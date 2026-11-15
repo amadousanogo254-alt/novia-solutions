@@ -27,6 +27,7 @@ class ContactDeliveryTests(unittest.TestCase):
             RESEND_FROM="onboarding@resend.dev",
             CONTACT_RECEIVER="owner@example.com",
             SITE_ORIGIN="",
+            CONTACT_ADDITIONAL_ORIGIN="",
         )
         self.config.start()
         self.addCleanup(self.config.stop)
@@ -37,6 +38,7 @@ class ContactDeliveryTests(unittest.TestCase):
         def fake_send(request, timeout):
             captured["payload"] = json.loads(request.data)
             captured["authorization"] = request.get_header("Authorization")
+            captured["user_agent"] = request.get_header("User-agent")
             return io.BytesIO(b'{"id":"test-id"}')
 
         fields = dict(self.fields, files=(io.BytesIO(b"%PDF-1.4\n%%EOF"), "test.pdf"))
@@ -48,7 +50,53 @@ class ContactDeliveryTests(unittest.TestCase):
         self.assertEqual(payload["reply_to"], self.fields["email"])
         self.assertEqual(payload["to"], ["owner@example.com"])
         self.assertEqual(base64.b64decode(payload["attachments"][0]["content"]), b"%PDF-1.4\n%%EOF")
+        self.assertEqual(captured["user_agent"], "novia-solutions/1.0")
         self.assertEqual(captured["authorization"], "Bearer test-key")
+
+    def test_allowed_contact_origins(self):
+        with patch.multiple(
+            server,
+            SITE_ORIGIN="https://noviasolution.it",
+            CONTACT_ADDITIONAL_ORIGIN="https://preview.example.com/",
+        ), patch.object(server, "urlopen", side_effect=lambda *args, **kwargs: io.BytesIO(b'{"id":"test-id"}')) as send:
+            for origin in ("https://noviasolution.it", "https://preview.example.com"):
+                with self.subTest(origin=origin):
+                    response = self.client.post(
+                        "/api/contact-requests", data=self.fields, headers={"Origin": origin}
+                    )
+                    self.assertEqual(response.status_code, 201)
+            self.assertEqual(send.call_count, 2)
+
+            for origin in ("https://attacker.example", "https://preview.example.com.attacker.example"):
+                with self.subTest(origin=origin):
+                    response = self.client.post(
+                        "/api/contact-requests", data=self.fields, headers={"Origin": origin}
+                    )
+                    self.assertEqual(response.status_code, 403)
+            self.assertEqual(send.call_count, 2)
+
+    def test_additional_origin_is_opt_in(self):
+        with patch.object(server, "SITE_ORIGIN", "https://noviasolution.it"), patch.object(server, "urlopen") as send:
+            response = self.client.post(
+                "/api/contact-requests",
+                data=self.fields,
+                headers={"Origin": "https://preview.example.com"},
+            )
+        self.assertEqual(response.status_code, 403)
+        send.assert_not_called()
+
+    def test_additional_contact_origin_does_not_authorize_appointments(self):
+        with patch.multiple(
+            server,
+            SITE_ORIGIN="https://noviasolution.it",
+            CONTACT_ADDITIONAL_ORIGIN="https://preview.example.com",
+        ):
+            response = self.client.post(
+                "/api/appointments",
+                json={},
+                headers={"Origin": "https://preview.example.com"},
+            )
+        self.assertEqual(response.status_code, 403)
 
     def test_api_failure_is_not_reported_as_success(self):
         errors = [

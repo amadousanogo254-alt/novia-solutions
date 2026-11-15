@@ -12,11 +12,13 @@ Render gratuit bloque les ports SMTP. Le serveur peut utiliser l'API HTTPS de Re
    RESEND_API_KEY=VOTRE_CLE_API
    RESEND_FROM=onboarding@resend.dev
    CONTACT_RECEIVER=adresse-du-compte-resend@example.com
-   SITE_ORIGIN=https://novia-solutions.onrender.com
+   SITE_ORIGIN=https://noviasolution.it
    ```
 
 3. Renseignez la véritable clé uniquement dans Render, jamais dans GitHub ou dans une conversation. `CONTACT_RECEIVER` doit être exactement l'adresse du compte Resend lors de l'utilisation de `onboarding@resend.dev`.
 4. Redéployez après l'ajout des variables et testez avec une demande et une pièce jointe non sensibles. Vérifiez la réception dans la boîte du compte et dans le tableau de bord Resend.
+
+Pour tester le formulaire depuis un aperçu statique séparé, configurez aussi `CONTACT_ADDITIONAL_ORIGIN` avec l'origine HTTPS exacte de cet aperçu, par exemple `https://novia-solutions-apercu-statique.onrender.com`. Le site statique doit réécrire `/api/contact-requests` vers l'URL de cette API sur le service Python. Cette variable n'autorise que le formulaire de contact ; elle ne change pas l'origine autorisée pour les rendez-vous. Supprimez-la après les tests et redéployez. Ne modifiez pas `SITE_ORIGIN` pendant les essais, afin de préserver le formulaire du site principal.
 
 L'adresse `onboarding@resend.dev` est limitée aux tests vers l'adresse du compte Resend. Pour un usage réel, vérifiez un domaine personnel chez Resend et utilisez une adresse expéditrice de ce domaine dans `RESEND_FROM`. L'acceptation par l'API ne garantit pas la réception finale.
 

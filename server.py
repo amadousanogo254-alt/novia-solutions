@@ -43,6 +43,7 @@ CONNECT_KEY = os.environ.get("GOOGLE_CONNECT_KEY", "")
 CALENDAR_ID = os.environ.get("GOOGLE_CALENDAR_ID", "primary")
 CALENDAR_TIMEZONE = os.environ.get("GOOGLE_CALENDAR_TIMEZONE", "Europe/Paris")
 SITE_ORIGIN = os.environ.get("SITE_ORIGIN", "")
+CONTACT_ADDITIONAL_ORIGIN = os.environ.get("CONTACT_ADDITIONAL_ORIGIN", "")
 PORT = int(os.environ.get("PORT", "8000"))
 HOST = os.environ.get("NOVIA_HOST", "127.0.0.1")
 CONTACT_RECEIVER = os.environ.get("CONTACT_RECEIVER", "noviasolutions0@gmail.com")
@@ -334,7 +335,11 @@ def validate_contact_attachment(filename: str, content: bytes) -> tuple[str, str
 def create_contact_request():
     origin = request.headers.get("Origin", "").rstrip("/")
     expected_origin = SITE_ORIGIN.rstrip("/") if SITE_ORIGIN else request.host_url.rstrip("/")
-    if origin and not hmac.compare_digest(origin, expected_origin):
+    additional_origin = CONTACT_ADDITIONAL_ORIGIN.rstrip("/")
+    if origin and not (
+        hmac.compare_digest(origin, expected_origin)
+        or (additional_origin and hmac.compare_digest(origin, additional_origin))
+    ):
         return error_response("Origine de la demande non autorisée.", 403)
 
     fields = {
