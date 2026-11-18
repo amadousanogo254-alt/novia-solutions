@@ -450,10 +450,10 @@
     'Joindre des documents (facultatif)': ['Allega documenti (facoltativo)', 'Attach documents (optional)', 'Adjuntar documentos (opcional)'],
     'PDF, JPG/PNG ou DOCX · 5 fichiers max. · 12 Mo au total.': ['PDF, JPG/PNG o DOCX · max. 5 file · 12 MB totali.', 'PDF, JPG/PNG or DOCX · up to 5 files · 12 MB total.', 'PDF, JPG/PNG o DOCX · máximo 5 archivos · 12 MB en total.'],
     'Aucun fichier sélectionné.': ['Nessun file selezionato.', 'No files selected.', 'No se ha seleccionado ningún archivo.'],
-    'Adresse de réception prévue : noviasolutions0@gmail.com. Le formulaire confirme l’envoi uniquement après transmission réussie. Évitez de joindre des documents sensibles qui ne sont pas nécessaires à votre demande.': [
-      'Indirizzo di ricezione: noviasolutions0@gmail.com. L’invio sarà confermato solo dopo la trasmissione. Evita di allegare documenti sensibili non necessari.',
-      'Expected recipient: noviasolutions0@gmail.com. Submission is confirmed only after successful delivery. Avoid attaching sensitive documents that are not needed for your request.',
-      'Destinatario previsto: noviasolutions0@gmail.com. El envío solo se confirmará tras la transmisión correcta. Evita adjuntar documentos sensibles que no sean necesarios.',
+    'Le formulaire confirme l’envoi uniquement après transmission réussie. Évitez de joindre des documents sensibles qui ne sont pas nécessaires à votre demande.': [
+      'L’invio sarà confermato solo dopo la trasmissione. Evita di allegare documenti sensibili non necessari.',
+      'Submission is confirmed only after successful delivery. Avoid attaching sensitive documents that are not needed for your request.',
+      'El envío solo se confirmará tras la transmisión correcta. Evita adjuntar documentos sensibles que no sean necesarios.',
     ],
     'J’accepte d’être recontacté au sujet de cette demande.': ['Accetto di essere ricontattato in merito a questa richiesta.', 'I agree to be contacted about this request.', 'Acepto que me contacten sobre esta solicitud.'],
     'Envoyer ma demande': ['Invia la richiesta', 'Send my request', 'Enviar mi solicitud'],
