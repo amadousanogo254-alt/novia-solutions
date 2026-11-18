@@ -4994,3 +4994,113 @@ body.services-page:not(.solutions-page):not(.appointment-page):not(.landing-page
   font-size: 0.85rem;
   font-weight: 600;
 }
+
+body:is(.about-page, .services-page, .formations-page, .products-page, .contact-page) main .container {
+  width: min(1000px, calc(100% - 32px));
+}
+
+body:is(.about-page, .services-page, .products-page, .contact-page) main .page-hero {
+  padding-block: clamp(24px, 3vw, 36px);
+}
+
+body:is(.about-page, .services-page, .products-page, .contact-page) main .page-hero h1,
+.formations-page .training-hero h1 {
+  font-size: clamp(1.65rem, 3vw, 2.25rem);
+  line-height: 1.2;
+}
+
+.formations-page .training-hero {
+  padding-block: clamp(28px, 3vw, 40px);
+}
+
+body:is(.about-page, .services-page, .products-page) main .section {
+  padding-block: clamp(24px, 3vw, 36px);
+}
+
+body.services-page .service-grid,
+.formations-page .training-section,
+.products-page .pricing-grid {
+  align-items: start;
+  gap: 16px;
+}
+
+body.services-page .service-grid .service-card,
+.formations-page .training-card,
+.products-page .price-card {
+  padding: clamp(16px, 2vw, 20px);
+}
+
+.formations-page .training-card-icon {
+  margin-bottom: 12px;
+}
+
+.formations-page .training-card ul {
+  margin-block: 14px 18px;
+}
+
+.products-page .pricing-grid {
+  width: 100%;
+}
+
+.products-page .price {
+  margin-top: 12px;
+}
+
+.products-page .price-card ul {
+  margin-block: 14px 16px;
+  gap: 7px;
+}
+
+body.contact-page main .contact-grid {
+  width: min(960px, calc(100% - 32px));
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  gap: 20px;
+}
+
+body.contact-page .form-card {
+  gap: 12px;
+  padding: clamp(16px, 2vw, 22px);
+}
+
+body.contact-page .form-card .form-row {
+  gap: 12px;
+}
+
+body.contact-page .form-card input:not([type="checkbox"]):not([type="file"]),
+body.contact-page .form-card select {
+  min-height: 44px;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+}
+
+body.contact-page .form-card textarea {
+  min-height: 100px;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+}
+
+body.contact-page .form-card > .btn {
+  min-height: 44px;
+}
+
+@media (max-width: 860px) {
+  body.contact-page main .contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+    width: min(640px, calc(100% - 32px));
+  }
+}
+
+@media (max-width: 560px) {
+  body:is(.about-page, .services-page, .formations-page, .products-page, .contact-page) main .container,
+  body.contact-page main .contact-grid {
+    width: calc(100% - 28px);
+  }
+
+  .products-page .pricing-grid {
+    width: 100%;
+  }
+
+  body.contact-page .form-card .form-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
