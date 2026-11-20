@@ -5179,6 +5179,25 @@ body.contact-page .form-card > .btn {
   font-weight: 600;
 }
 
+.about-page .founding-team {
+  display: grid;
+  gap: 16px;
+}
+
+.founding-team-photo {
+  object-position: 78% center;
+}
+
+.about-page .founding-team-note {
+  margin: 0;
+  padding: 14px 16px;
+  border-left: 4px solid #0c8fe7;
+  border-radius: 8px;
+  background: #eef7fd;
+  color: #0d3d7c;
+  line-height: 1.55;
+}
+
 .products-page .price-card .offer-whatsapp {
   margin-top: 10px;
 }
