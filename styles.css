@@ -4995,6 +4995,34 @@ body.services-page:not(.solutions-page):not(.appointment-page):not(.landing-page
   font-weight: 600;
 }
 
+.products-page .pricing-grid.offer-packs {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.products-page .offer-packs .price-card h2 {
+  margin: 0;
+  color: #0d3d7c;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+.products-page .offer-packs .price {
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 860px) {
+  .products-page .pricing-grid.offer-packs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .products-page .pricing-grid.offer-packs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 body:is(.about-page, .services-page, .formations-page, .products-page, .contact-page) main .container {
   width: min(1000px, calc(100% - 32px));
 }
