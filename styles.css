@@ -5307,3 +5307,32 @@ body.contact-page .form-card > .btn {
     max-height: none;
   }
 }
+
+@media (max-width: 900px) {
+  .home-hero:has(.home-hero-logo) {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .home-hero:has(.home-hero-logo) .home-hero-visual {
+    position: relative;
+    inset: auto;
+    min-height: 0;
+    max-height: none;
+    padding: 0;
+  }
+
+  .home-hero-visual:has(.home-hero-logo)::before {
+    display: none;
+  }
+
+  .home-hero-visual img.home-hero-logo {
+    position: static;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
