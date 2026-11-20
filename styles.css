@@ -5179,6 +5179,20 @@ body.contact-page .form-card > .btn {
   font-weight: 600;
 }
 
+.products-page .price-card .offer-whatsapp {
+  margin-top: 10px;
+}
+
+.formations-page .training-card .auto-school-payment {
+  margin-top: 10px;
+}
+
+.formations-page .training-card .auto-school-payment-note {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
 .home-offer-card a {
   display: inline-flex;
   align-items: center;
